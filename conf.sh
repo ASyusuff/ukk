@@ -91,6 +91,8 @@ apache_setup() {
     echo "MENGKONFIGURASI APACHE2..."
     cd /var/www/
     mkdir $DR1
+    mkdir $DR2
+    mkdir $DR3
 
     cat <<EOF > /var/www/$DR1/index.html
 <html>
@@ -213,6 +215,8 @@ EOF
     a2dissite "000-default.conf"
     a2ensite "$DR1.conf"
     a2ensite "$DR2.conf"
+    a2ensite "$DR3.conf"
+
     systemctl reload apache2.service
 }
 
@@ -342,7 +346,8 @@ while true; do
             break
             ;;
         4)
-            wordpress_install
+            apache_setup
+            bind_setup
             break
             ;;
         5)
