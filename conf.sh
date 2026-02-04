@@ -41,25 +41,25 @@ EOF
 
 input_domain() {
 
-    read -p "Masukan nama domain utama untuk web: " main_domain
-    read -p "Masukan nama sub-domain1 untuk web: " sub_domain1
-    read -p "Masukan nama sub-domain2 untuk web: " sub_domain2
+    read -p "Masukan nama domain utama untuk web: " maindomain
+    read -p "Masukan nama sub-domain1 untuk web: " subdomain1
+    read -p "Masukan nama sub-domain2 untuk web: " subdomain2
 
 
     #pengolahan data user yang di input
-    IFS='.' read -r sub_domain1 root_domain1  <<< "$main_domain"
-    IFS='.' read -r sub_domain2 root_domain2  <<< "$sub_domain1"
-    IFS='.' read -r sub_domain3 root_domain3  <<< "$sub_domain2"
+    IFS='.' read -r sub_domain root_domain1  <<< "$maindomain"
+    IFS='.' read -r sub_domain2 root_domain2  <<< "$subdomain1"
+    IFS='.' read -r sub_domain3 root_domain3  <<< "$subdomain2"
 
     cat >data/domain.txt << EOF
-main_domain=$main_domain
+main_domain=$maindomain
 sub_domain1=$sub_domain
-sub_domain2=$sub_domain
 root_domain1=$root_domain1
+subdomain1=$subdomain1
 root_domain2=$root_domain2
-root_domain3=$root_domain3
-sub_domain1=$sub_domain1
 sub_domain2=$sub_domain2
+subdomain2=$subdomain2
+root_domain3=$root_domain3
 sub_domain3=$sub_domain3
 EOF
 }
@@ -351,7 +351,7 @@ while true; do
             break
             ;;
         5)
-            view_data
+            input_domain
             break
             ;;
         [qQ])
